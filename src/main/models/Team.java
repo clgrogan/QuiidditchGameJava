@@ -1,7 +1,6 @@
 package src.main.models;
 
 import java.util.Arrays;
-import java.util.function.BooleanSupplier;
 
 public class Team {
 
@@ -111,6 +110,18 @@ public class Team {
      */
     public static boolean arrayHasBlank(String[] array) {
         return Arrays.stream(array).anyMatch(e -> e.isBlank());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof Team))
+            return false;
+        Team team = (Team) obj;
+
+        return this.house == team.house
+                && this.keeper == team.keeper
+                && this.seeker == team.seeker
+                && Arrays.toString(this.chasers).equals(Arrays.toString(chasers));
     }
 
 }

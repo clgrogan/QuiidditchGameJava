@@ -8,14 +8,17 @@ public class Main {
         static Game game;
 
         public static void main(String[] args) {
-                Team team01 = new Team("GRYFFINDOR", "Oliver", "Harry",
+                Team home = new Team("GRYFFINDOR", "Oliver", "Harry",
                                 new String[] { "Angelina", "Ginny", "Katie" });
-                Team team02 = new Team("SLYTHERIN", "Vincent", "Draco",
+                Team away = new Team("SLYTHERIN", "Vincent", "Draco",
                                 new String[] { "Bridget", "Harper", "Malcolm" });
+                game = new Game(home, away);
                 System.out.println();
-                System.out.println(team01);
-                System.out.println(team02);
+                System.out.println(home);
+                System.out.println(away);
                 System.out.println();
+                System.out.println(game.getScore(home));
+                game.setScore(home, 50);
 
         }
 
