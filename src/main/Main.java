@@ -17,8 +17,23 @@ public class Main {
                 System.out.println(home);
                 System.out.println(away);
                 System.out.println();
-                System.out.println(game.getScore(home));
+                System.out.println("GET: game.getScore(home): " + game.getScore(home));
                 game.setScore(home, 50);
+                System.out.println("\nSET: game.setScore(home, 50)");
+                System.out.println("\nGET: game.getScore(home): " + game.getScore(home));
+                System.out.println();
+                System.out.println("game.getTeam(" + home.getHouse() + "):\n" + game.getTeam(home.getHouse()));
+                System.out.println("\ngetTeam Refactored");
+                System.out.println(
+                                "game.getTeamRefactored(" + home.getHouse() + "):\n"
+                                                + game.getTeamRefactored(home.getHouse()));
+
+                System.out.println();
+                System.out.println("Game.getGameCount(): " + Game.getGameCount());
+                System.out.println("\n\tGame game2 = new Game(away, home);\n");
+                Game game2 = new Game(away, home);
+                System.out.println("Game.getGameCount(): " + Game.getGameCount());
+                System.out.println();
 
         }
 
