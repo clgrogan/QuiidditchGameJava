@@ -6,6 +6,8 @@ import java.util.Optional;
 public class Game {
   private HashMap<Team, Integer> scoreboard;
   private Team returnTeam = null;
+  private final int QUAFFLE_POINTS = 10;
+  private final int SNITCH_POINTS = 150;
 
   private static int gameCount;
 
@@ -21,6 +23,8 @@ public class Game {
   }
 
   public void setScore(Team team, Integer score) {
+    if (team == null || score == null)
+      throw new IllegalArgumentException("Arguments may not be null");
     this.scoreboard.put(new Team(team), (score));
   }
 
@@ -63,4 +67,54 @@ public class Game {
     teamOptional = scoreboard.keySet().stream().filter((e) -> e.getHouse().equals(house)).findFirst();
     return teamOptional.isPresent() ? teamOptional.get() : null;
   }
+
+  /**
+   * getPlaceHolder
+   * 
+   * @param String
+   * @return String
+   */
+  public String getPlaceholder(String play) {
+
+    if (play == null || play.isEmpty())
+      return null;
+
+    int startSubstring = play.indexOf("<") + 1;
+    int endSubstring = play.indexOf(">");
+    if (startSubstring < 0
+        || startSubstring >= play.length() - 2
+        || startSubstring >= endSubstring
+        || endSubstring < 1
+        || endSubstring > play.length() - 1)
+      return null;
+    return play.substring(startSubstring, endSubstring);
+  }
+
+  public String replacePlaceholder(String play, String placeholder, String value) {
+
+    return play.replace(("<" + placeholder + ">"), value);
+
+  }
+
+  public void quaffleScore(Team team) {
+    scoreboard.put(team, scoreboard.get(team) + QUAFFLE_POINTS);
+  }
+
+  /**
+   * 
+   * @param Team
+   */
+  public void catchSnitch(Team team) {
+    scoreboard.put(team, scoreboard.get(team) + SNITCH_POINTS);
+  }
+
+  public String simulate(String play) {
+
+    return null;
+  }
+
+  public Team getRandomTeam() {
+    return scoreboard.keySet().toArray(new Team[scoreboard.size()])[(int) (100 * Math.random() % 2)];
+  }
+
 }

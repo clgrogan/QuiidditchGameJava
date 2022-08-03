@@ -34,6 +34,13 @@ public class Team {
         this.chasers = Arrays.copyOf(sourceTeam.chasers, sourceTeam.chasers.length);
     }
 
+    public Team(String house, String keeper, String seeker, String chaser01, String chaser02, String chaser03) {
+        this.house = house;
+        this.keeper = keeper;
+        this.seeker = seeker;
+        this.chasers = new String[] { chaser01, chaser02, chaser03 };
+    }
+
     public static String getPositionChaser() {
         return POSITION_CHASER;
     }
