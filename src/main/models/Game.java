@@ -109,7 +109,17 @@ public class Game {
   }
 
   public String simulate(String play) {
+    String placeholder = getPlaceholder(play);
+    Team randomTeam = new Team(getRandomTeam());
 
+    if (placeholder.equals(Team.getPositionChaser())) {
+      quaffleScore(randomTeam);
+      return replacePlaceholder(play, placeholder, randomTeam.getChasers()[(int) (Math.random() * 3)]);
+    } else if (placeholder.equals(Team.getPositionSeeker())) {
+      catchSnitch(randomTeam);
+      return replacePlaceholder(play, placeholder, randomTeam.getSeeker());
+    } else if (placeholder.equals(Team.getPositionKeeper()))
+      return replacePlaceholder(play, placeholder, randomTeam.getKeeper());
     return null;
   }
 
